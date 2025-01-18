@@ -33,7 +33,7 @@ function App() {
     passwordGen();
   }, [numbers, length, characters])
   return (
-    <div className='min-h-screen min-w-screen flex flex-col justify-center items-center bg-gradient-to-t from-red-900 to bg-slate-800 '>
+    <div className='min-h-screen min-w-screen flex flex-col justify-center items-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 '>
       <div className='flex flex-row justify-center item-center m-10 gap-4 '>
         <input type='text' value={password} readOnly className='bg-gray-400 shadow-md m-2 px-3 py-1' />
         <button className='bg-red-400 px-4  rounded-md shadow-md hover:bg-red-600 duration-700' onClick={copyPassword}>Copy</button>
