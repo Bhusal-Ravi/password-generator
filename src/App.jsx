@@ -33,20 +33,64 @@ function App() {
     passwordGen();
   }, [numbers, length, characters])
   return (
-    <div className='min-h-screen min-w-screen flex flex-col justify-center items-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 '>
-      <div className='flex flex-row justify-center item-center m-10 gap-4 '>
-        <input type='text' value={password} readOnly className='bg-gray-400 shadow-md m-2 px-3 py-1' />
-        <button className='bg-red-400 px-4  rounded-md shadow-md hover:bg-red-600 duration-700' onClick={copyPassword}>Copy</button>
+    <div className='min-h-screen min-w-screen flex flex-col justify-center items-center bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 p-4'>
+      {/* Password Display Section */}
+      <div className='flex flex-row justify-center items-center m-5 gap-4 flex-wrap'>
+        <input
+          type='text'
+          value={password}
+          readOnly
+          className='bg-gray-100 shadow-md m-2 px-3 py-2 rounded-lg text-lg w-full sm:w-auto max-w-sm'
+        />
+        <button
+          className='bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:scale-105 transition-transform duration-300'
+          onClick={copyPassword}
+        >
+          Copy
+        </button>
       </div>
-      <div className='flex sm:flex-row justify-center gap-4 flex-col'>
-        <input type='range' ref={passwordRef} className='mx-5 accent-red-400 appearance-none rounded-lg h-2 bg-red-200' min={8} max={20} value={length} onChange={(e) => { setLength(e.target.value) }} /> <span>Length:{length}</span>
-        <input type='checkbox' className='mr-2' defaultChecked={numbers} onChange={() => { setNumbers((prev) => !prev) }} /> <span >Numbers</span>
-        <input type='checkbox' className='mr-2' defaultChecked={characters} onChange={() => { setCharacters((prev) => !prev) }} /> <span >Characters</span>
+
+      {/* Controls Section */}
+      <div className='flex sm:flex-row flex-col justify-center items-center gap-6 w-full sm:w-auto'>
+        {/* Length Slider */}
+        <div className='flex flex-row items-center gap-2'>
+          <input
+            type='range'
+            ref={passwordRef}
+            className='appearance-none rounded-lg h-3 bg-red-200 accent-red-500 w-60 sm:w-80'
+            min={8}
+            max={20}
+            value={length}
+            onChange={(e) => setLength(e.target.value)}
+          />
+          <span className='text-white font-semibold'>Length: {length}</span>
+        </div>
+
+        {/* Numbers Checkbox */}
+        <label className='flex items-center gap-2 text-white font-medium'>
+          <input
+            type='checkbox'
+            className='h-5 w-5'
+            defaultChecked={numbers}
+            onChange={() => setNumbers((prev) => !prev)}
+          />
+          Numbers
+        </label>
+
+        {/* Characters Checkbox */}
+        <label className='flex items-center gap-2 text-white font-medium'>
+          <input
+            type='checkbox'
+            className='h-5 w-5'
+            defaultChecked={characters}
+            onChange={() => setCharacters((prev) => !prev)}
+          />
+          Characters
+        </label>
       </div>
+
       <Tutorial />
     </div>
-
-  )
+  );
 }
-
 export default App
